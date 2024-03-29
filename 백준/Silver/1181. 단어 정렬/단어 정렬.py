@@ -1,9 +1,9 @@
+import sys
+
 n = int(input())
-word = [str(input()) for i in range(n)]
-
-word = list(set(word))
-word.sort()
-word.sort(key=len)
-
-for i in word:
+arr = [sys.stdin.readline().strip() for i in range(n)]
+arr = list(set(arr))
+arr.sort()
+arr.sort(key=len)
+for i in arr:
     print(i)
