@@ -2,7 +2,7 @@ import sys
 
 input = lambda : sys.stdin.readline()
 n,m= map(int, input().split())
-s = [input() for _ in range(n)]
+s = set([input() for _ in range(n)])
 e = [input() for _ in range(m)]
 count = 0
 for i in e:
