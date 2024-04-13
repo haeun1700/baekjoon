@@ -1,8 +1,7 @@
 import sys
 dic = {}
 while True:
-    n = sys.stdin.readline().strip()
-    # if not n : break
+    n = sys.stdin.readline().rstrip()
     if n == "":
         break
     elif n not in dic:
