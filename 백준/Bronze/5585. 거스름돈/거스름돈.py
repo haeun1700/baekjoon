@@ -6,10 +6,7 @@ coins = [500,100,50,10,5,1]
 changes = 1000 - n
 i = 0
 count = 0
-while changes > 0:
-    if changes >= coins[i]:
-        count += changes // coins[i]
-        changes = changes % coins[i]
-    else:
-        i += 1
+for i in coins:
+    count += changes // i
+    changes = changes % i
 print(count)
