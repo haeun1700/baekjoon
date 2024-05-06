@@ -1,9 +1,8 @@
 n = int(input())
 
-dp = [999_999] * max(n+1, 6)
-dp[3] = dp[5] = 1 
-
-for i in range(6, n+1):
-    dp[i] = min(dp[i-3]+1, dp[i-5]+1) 
-
-print(-1 if dp[n] >= 999_999 else dp[n])
+for i in range(0, n//3+1):
+    for j in range(0, n//5+1):
+        if i*3+j*5 == n:
+            print(i+j)
+            exit(0)
+print(-1)
