@@ -3,7 +3,8 @@ input = lambda : sys.stdin.readline().strip()
 
 t = int(input())
 for _ in range(t):
-    a = input().split(' ')
+    a = input().split()
+    temp = []
     for i in a:
-        temp = i[::-1]
-        print(temp, end=' ')
+        temp.append(i[::-1])
+    print(' '.join(temp))
