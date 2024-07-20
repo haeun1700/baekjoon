@@ -1,16 +1,34 @@
 import sys
-import re
+
 input = lambda : sys.stdin.readline().rstrip()
 
-text = input()
-text = re.split(r'(<[^>]*>)',text)
-for i in text:
-    if i == '':
-        continue
-    if "<" in i:
-        print(i, end='')
-    elif "<" not in i and ">" not in i:
-        text2 = i.split()
-        for idx, i in enumerate(text2):
-            i = i[::-1]
-            print(i,end='') if idx == len(text2)-1 else print(i,end=' ')
+str = input()
+stack = []
+result = []
+visited = 0
+
+for s in str:
+    if s == "<":
+        for i in range(len(stack)):
+            result.append(stack.pop())
+        visited = 1
+        result.append(s)
+    elif s == ">":
+        visited=0
+        result.append(s)
+    else:
+        if visited ==1:
+            result.append(s)
+        else:
+            if s == ' ':
+                for i in range(len(stack)):
+                    result.append(stack.pop())
+                result.append(s)
+            else:
+                stack.append(s)
+
+while stack:
+    result.append(stack.pop())
+
+for i in result:
+    print(i,end= '')
