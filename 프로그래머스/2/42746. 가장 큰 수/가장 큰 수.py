@@ -6,5 +6,6 @@ def solution(numbers):
     
     for i in numbers:             # 정렬된 리스트를 answer에 순서대로 더해줌
         answer += i
+    answer = int(answer)
     
-    return str(int(answer))
+    return str(answer)
