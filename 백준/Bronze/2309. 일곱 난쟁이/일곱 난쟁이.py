@@ -1,16 +1,15 @@
 from itertools import combinations
 import sys
+
 input = sys.stdin.readline
 
-person = []
+nanjang = []
 for _ in range(9):
     k = int(input())
-    person.append(k)
+    nanjang.append(k)
 
-for answer in combinations(person, 7):
-    if sum(answer) == 100:
-        answer = list(answer)
-        answer.sort()
-        for i in answer:
-            print(i)
+for i in combinations(nanjang, 7):
+    if sum(i) == 100:
+        for result in sorted(i):
+            print(result)
         break
