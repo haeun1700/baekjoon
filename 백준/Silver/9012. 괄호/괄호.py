@@ -1,20 +1,21 @@
-import sys
-
-n = int(sys.stdin.readline())
-for i in range(n):
-    word = sys.stdin.readline()
-    stack = []
-    for j in word:
-        if j == '(':
-            stack.append(j)
-        elif j == ')':
-            if stack:
-                stack.pop()
-            else:
-                print('NO')
+def vps(word):
+    ps = word
+    s = []
+    result = "YES"
+    for p in ps:
+        if p == ")":
+            if len(s) <= 0:
+                result = "NO"
                 break
-        else:
-            if not stack:
-                print("YES")
-            else:
-                print("NO")
+            s.pop()
+        if p == "(":
+            s.append(p)
+
+    if len(s)!=0: result="NO"
+    return result
+
+
+n = int(input())
+for _ in range(n):
+    ps = str(input())
+    print(vps(ps))
