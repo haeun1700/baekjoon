@@ -1,25 +1,30 @@
 import sys
+input = lambda: sys.stdin.readline()
 
 
-def binarysort(arr, num, low, high):
-    if low > high: return 0
-    mid = (low + high) // 2
-    if arr[mid] > num:
-        return binarysort(arr, num, low, mid - 1)
-    elif arr[mid] < num:
-        return binarysort(arr, num, mid + 1, high)
-    elif arr[mid] == num:
-        return 1
+def binary_search(num, left, right, arr):
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == num:
+            return 1
+
+        if arr[mid] < num:
+            left = mid+1
+        elif arr[mid] > num:
+            right = mid -1
+
+    return 0
 
 
-input = lambda: sys.stdin.readline().rstrip()
 n = int(input())
-card = list(map(int, input().split()))
-card.sort()
-low = 0
-high = len(card) - 1
+cur_card = list(map(int, input().split()))
 m = int(input())
-card2 = list(map(int, input().split()))
+find_card = list(map(int, input().split()))
+cur_card.sort()
 
-for i in card2:
-    print(binarysort(card, i, low, high), end=' ')
+for i in find_card:
+    start = 0
+    if n == m == 1:
+        print(1 if i == cur_card[0] else 0)
+        break
+    print(binary_search(i, start, n-1, cur_card), end=' ')
