@@ -1,18 +1,18 @@
 import java.util.Scanner;
 
-public class Main{
+class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String word = sc.nextLine();
-
-        for(int i = 0; i < word.length(); i++){
+        String word = sc.next();
+        char[] ans = word.toCharArray();
+        for(int i = 0; i < word.length(); i++) {
             char ch = word.charAt(i);
-
-            if((int)ch < 97){
-                System.out.print(Character.toLowerCase(ch));
-            }else{
-                System.out.print(Character.toUpperCase(ch));
+            if('A'<= ch && ch <= 'Z'){
+                ans[i] = (char)('a'+ ch - 'A');
+            }else {
+                ans[i] = (char) ('A' + ch - 'a');
             }
         }
+        System.out.println(ans);
     }
 }
