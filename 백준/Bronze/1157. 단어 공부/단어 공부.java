@@ -3,15 +3,13 @@ import java.util.Scanner;
 class Main{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        char[] word = sc.next().toCharArray();
+        String word = sc.next().toUpperCase();
         int[] cnt = new int[26];
         // 우선 소문자를 모두 대문자로 변환
-        for(int i = 0; i < word.length; i++){
-            if('a' <= word[i] && word[i] <= 'z'){
-                word[i] = (char)('A' + (word[i]-'a'));
-            }
+        for(int i = 0; i < word.length(); i++){
+            char ch = word.charAt(i);
             //각 문자열 갯수 카운트하기
-            cnt[word[i]-'A']++;
+            cnt[ch-'A']++;
         }
         int maxCount = -1;
         char maxAlpha = 0;
