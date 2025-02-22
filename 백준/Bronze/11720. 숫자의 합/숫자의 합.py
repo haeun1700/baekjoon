@@ -1,3 +1,7 @@
-n_ = input()
+n = int(input())
+s = input()
 
-print(sum(map(int, input())))
+res = 0
+for i in s:
+    res += ord(i) - ord('0')
+print(res) 
