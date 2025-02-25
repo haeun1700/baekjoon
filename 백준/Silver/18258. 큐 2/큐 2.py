@@ -1,21 +1,30 @@
 import sys
 from collections import deque
-
 n = int(input())
-input = lambda: sys.stdin.readline().split()
-dq = deque()
-
-for _ in range(n):
-    cmd = input()
-    if cmd[0] == "push":
-        dq.append(cmd[1])
-    elif cmd[0] == "pop":
-        print(dq.popleft()) if len(dq) != 0 else print(-1)
-    elif cmd[0] == "size":
-        print(len(dq))
-    elif cmd[0] == "empty":
-        print(0) if len(dq) != 0 else print(1)
-    elif cmd[0] == "front":
-        print(dq[0]) if len(dq) != 0 else print(-1)
-    elif cmd[0] == "back":
-        print(dq[-1]) if len(dq) != 0 else print(-1)
+queue = deque([])
+for i in range(n):
+    com = sys.stdin.readline().split()
+    if com[0] == 'push':
+        queue.append(com[1])
+    elif com[0] == 'pop':
+        if len(queue) == 0:
+            print(-1)
+        else:
+            print(queue.popleft())
+    elif com[0] == 'size':
+        print(len(queue))
+    elif com[0] == 'empty':
+        if len(queue) == 0:
+            print(1)
+        else:
+            print(0)
+    elif com[0] == 'front':
+        if len(queue) == 0:
+            print(-1)
+        else:
+            print(queue[0])
+    elif com[0] == 'back':
+        if len(queue) == 0:
+            print(-1)
+        else:
+            print(queue[-1])
