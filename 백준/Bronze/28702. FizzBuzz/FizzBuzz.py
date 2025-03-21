@@ -1,6 +1,14 @@
-for i in range(3, 0, -1):
-    x = input()
-    if x not in ['Fizz', 'Buzz', 'FizzBuzz']:
-        n = int(x) + i
+words = [input() for i in range(3)]
+for idx, val in enumerate(words):
+    if val.isdigit():
+        result = int(val) + (3-idx)
+
+        if result % 3 == 0 and result % 5 == 0:
+            print("FizzBuzz")
+        elif result % 3 == 0:
+            print("Fizz")
+        elif result % 5 == 0:
+            print("Buzz")
+        else:
+            print(result)
         break
-print('Fizz'*(n % 3 == 0) + 'Buzz'*(n % 5 == 0) or n)
