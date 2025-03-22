@@ -1,0 +1,11 @@
+import sys
+input = lambda: sys.stdin.readline()
+def fib(n):
+    if n == 1 or n == 2:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+
+
+n = int(input())
+print(fib(n), n-2)
