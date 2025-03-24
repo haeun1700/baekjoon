@@ -1,8 +1,4 @@
-A,B = map(str, input().split())
-new_A = ''
-new_B = ''
-for i in range(2, -1, -1):
-    new_A += A[i]
-    new_B += B[i]
-
-print(int(new_A) if int(new_A) > int(new_B) else int(new_B))
+num = list(map(str, input().split()))
+a = ''.join(reversed(num[0]))
+b = ''.join(reversed(num[1]))
+print(a if int(a) > int(b) else b)
