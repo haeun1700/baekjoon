@@ -8,10 +8,6 @@ for t in range(1, T+1):
 
     for i in range(n-m+1):
         diff = sum(arr[i:i+m])
-        if max_value <= diff:
-            max_value = diff
-
-        if min_value >= diff:
-            min_value = diff
-
+        max_value = max(diff,max_value)
+        min_value = min(diff, min_value)
     print(f'#{t} {max_value-min_value}')
