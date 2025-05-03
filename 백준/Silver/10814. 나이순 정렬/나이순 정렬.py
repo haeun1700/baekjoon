@@ -1,7 +1,9 @@
-import sys
-input = lambda: sys.stdin.readline().rstrip()
 n = int(input())
+arr = []
+for i in range(n):
+    age, name = map(str, input().split())
+    arr.append([int(age), name])
 
-people = [str(input()) for a in range(n)]
-people.sort(key=lambda x: int(x.split()[0]))
-print('\n'.join(people))
+sorted_dic = sorted(arr, key=lambda x: x[0])
+for age, name in sorted_dic:
+    print(age, name)
