@@ -1,4 +1,3 @@
-# T A G C
 n,m = map(int, input().split())
 arr = [list(input().strip()) for _ in range(n)]
 
@@ -11,9 +10,9 @@ for i in range(m):
             dic[c] = 1
         elif c in dic:
             dic[c] += 1
-    result += min(k for k,v in dic.items() if v == max(dic.values()))
+    result += sorted(k for k, v in dic.items() if v == max(dic.values()))[0]
 
-cnt  = 0
+cnt = 0
 for i in arr:
     for j in range(len(i)):
         if i[j] != result[j]:
