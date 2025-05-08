@@ -1,34 +1,28 @@
-import sys
-
-input = lambda : sys.stdin.readline().rstrip()
-
-str = input()
-stack = []
+s = input()
+st = []
+open = False
 result = []
-visited = 0
 
-for s in str:
-    if s == "<":
-        for i in range(len(stack)):
-            result.append(stack.pop())
-        visited = 1
-        result.append(s)
-    elif s == ">":
-        visited=0
-        result.append(s)
-    else:
-        if visited ==1:
-            result.append(s)
-        else:
-            if s == ' ':
-                for i in range(len(stack)):
-                    result.append(stack.pop())
-                result.append(s)
-            else:
-                stack.append(s)
+for c in s:
+    if c == '<':
+        open = True
+        if st:
+            while st:
+                result.append(st.pop())
+    elif c == '>':
+        open = False
+        result.append('>')
 
-while stack:
-    result.append(stack.pop())
 
-for i in result:
-    print(i,end= '')
+    if open == True:
+        result += c
+    elif c != '>' and c!= '>' and c != ' ' and open == False:
+        st.append(c)
+    elif c== ' ' and open == False:
+        while st:
+            result.append(st.pop())
+        result.append(' ')
+
+while st:
+    result.append(st.pop())
+print(''.join(result))
