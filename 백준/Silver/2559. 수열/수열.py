@@ -1,26 +1,11 @@
-n,k = map(int, input().split())
+n, k = map(int, input().split())
 arr = list(map(int, input().split()))
 
-start = 0
-end = 0
-total = 0
-result = []
-cnt = 0
+window_sum = sum(arr[:k])
+result = window_sum
 
-while True:
-    if end == n:
-        result.append(total)
-        break
+for i in range(k, n):
+    window_sum += arr[i]-arr[i-k]
+    result = max(window_sum, result)
 
-    elif cnt >= k:
-        result.append(total)
-        total -= arr[start]
-        start += 1
-        cnt -= 1
-    elif cnt < k:
-        total += arr[end]
-        end += 1
-        cnt += 1
-
-
-print(max(result))
+print(result)
