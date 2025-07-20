@@ -9,18 +9,10 @@ public class Main {
             int num = Integer.parseInt(br.readLine());
             arr[num] = true;
         }
-        int first = 0, second = 0;
         for(int i = 1; i < 31; i++){
             if(!arr[i]){
-                if(first == 0){
-                    first = i;
-                }else{
-                    second = i;
-                }
+                System.out.println(i);
             }
         }
-        int max = Math.max(first, second);
-        int min = Math.min(first, second);
-        System.out.printf("%d\n%d", min, max);
     }
 }
