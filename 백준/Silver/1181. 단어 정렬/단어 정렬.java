@@ -1,34 +1,29 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
+import java.util.TreeSet;
 
-public class Main {
+public class Main{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         StringBuilder sb = new StringBuilder();
 
-        // 길이가 짧은 것 -> 사전 순
-        int N = Integer.parseInt(br.readLine());
-        String[] word = new String[N];
-        for(int i = 0; i<N; i++){
-            word[i] = br.readLine();
-        }
-        Arrays.sort(word, (a,b)-> {
-            if(a.length() == b.length()){
-                return a.compareTo(b);
-            } return a.length()-b.length();
-        });
-
-        String init = word[0];
-        sb.append(init).append("\n");
-        for(int i = 1; i<N; i++){
-            if(!init.equals(word[i])){
-                sb.append(word[i]).append("\n");
-                init = word[i];
+        int n = Integer.parseInt(br.readLine());
+        Comparator<String> diff = (o1, o2) -> {
+            if(o1.length() == o2.length()){
+                return o1.compareTo(o2);
             }
+            return o1.length() - o2.length();
+        };
+        TreeSet<String> set = new TreeSet<>(diff);
+        for(int i = 0; i<n; i++){
+            set.add(br.readLine());
+        }
+        for(String word: set){
+            sb.append(word).append("\n");
         }
         System.out.println(sb);
     }
