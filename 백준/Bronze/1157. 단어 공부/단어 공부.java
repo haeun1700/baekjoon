@@ -1,28 +1,45 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
-class Main{
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String word = sc.next().toUpperCase();
-        int[] cnt = new int[26];
-        // 우선 소문자를 모두 대문자로 변환
-        for(int i = 0; i < word.length(); i++){
-            char ch = word.charAt(i);
-            //각 문자열 갯수 카운트하기
-            cnt[ch-'A']++;
+/*
+1. 단어를 입력받는다. -> 대문자로 처리한다.
+2. HashMap을 선언한다.
+    2-1. 해당 문자열의 문자를 key,value로 저장한다.
+3. Map의 키와 밸류값이 무엇인지 순회한다.
+    3-1. 만약 밸류가 현재 max보다 높으면 갱신
+    3-2. 만약 max와 value가 동일하면 ?로 저장
+4. 최종 res값 출력
+ */
+public class Main{
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+
+        //1. 단어를 입력받는다. -> 대문자로 처리한다.
+        String word = br.readLine().toUpperCase();
+        //2. HashMap을 선언한다.
+        HashMap<Character, Integer> map = new HashMap<>();
+        //2-1. 해당 문자열의 문자를 key,value로 저장한다.
+        for(int i = 0; i< word.length(); i++){
+            char c = word.charAt(i);
+            map.put(c, map.getOrDefault(c, 0)+1);
         }
-        int maxCount = -1;
-        char maxAlpha = 0;
-        for(int i = 0; i < 26; i++){
-            if(cnt[i] > maxCount){
-                maxCount = cnt[i];
-                maxAlpha = (char)('A'+i);
-            }
-            //가장 많이 사용된 갯수가 2개 이상이면 ? 출력
-            else if(cnt[i] == maxCount){
-                maxAlpha = '?';
+        // 3. Map의 키와 밸류값이 무엇인지 순회한다.
+        int maxValue = Integer.MIN_VALUE;
+        char res = ' ';
+
+        for(Map.Entry<Character, Integer> entry : map.entrySet()){
+
+            if(maxValue <= entry.getValue()){
+                // 3-2. 만약 max와 value가 동일하면 ?로 저장
+                res = maxValue == entry.getValue() ? '?' : entry.getKey();
+                // 3-1. 만약 밸류가 현재 max보다 높으면 갱신
+                maxValue = entry.getValue();
             }
         }
-        System.out.println(maxAlpha);
+        System.out.println(res);
     }
 }
